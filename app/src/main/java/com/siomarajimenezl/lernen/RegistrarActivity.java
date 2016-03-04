@@ -1,5 +1,6 @@
 package com.siomarajimenezl.lernen;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,12 +21,12 @@ import java.util.Map;
 public class RegistrarActivity extends AppCompatActivity {
 
     private Firebase myFB;
-    private boolean flag;
+
 
     EditText nombreUsuario;
     EditText passwordUsuario;
     EditText emailUsuario;
-    Button crearCuenta;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,9 @@ public class RegistrarActivity extends AppCompatActivity {
         passwordUsuario = (EditText)findViewById(R.id.inputPassword);
         emailUsuario = (EditText) findViewById(R.id.inputEmail);
 
-        flag = false;
+
+
+        //flag = false;
     }
 
     public boolean validarRegistro(View v){
@@ -79,49 +82,48 @@ public class RegistrarActivity extends AppCompatActivity {
 
             myFB.createUser(emailUsuario.getText().toString(), passwordUsuario.getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
 
+
+                @Override
                 public void onSuccess(Map<String, Object> result) {
-                    Log.i("Register", "Success: " + result.get("uid"));
+                    System.out.println("Successfully created user account with uid: " + result.get("uid"));
 
-                    Firebase usersRef = myFB.child("Cliente").child(result.get("uid").toString());
+                    myFB.authWithPassword(emailUsuario.getText().toString(), passwordUsuario.getText().toString(), new Firebase.AuthResultHandler() {
+                        @Override
+                        public void onAuthenticated(AuthData authData) {
+                            HashMap<String, Object> authMap = new HashMap<String, Object>();
+                            authMap.put("uid", authData.getUid());
+                            authMap.put("Nombre", nombreUsuario.getText().toString());
+                            authMap.put("Email", emailUsuario.getText().toString());
+                            authMap.put("Password", passwordUsuario.getText().toString());
 
-                    Map<String, String> agregar = new HashMap<String, String>();
-                    agregar.put("Nombre", nombreUsuario.getText().toString());
-                    agregar.put("Email", emailUsuario.getText().toString());
-                    agregar.put("Contraseña", passwordUsuario.getText().toString());
+                            Firebase userRef = myFB.child("Cliente").child(authData.getUid());
 
-                    usersRef.setValue(agregar);
+                            userRef.setValue(authMap);
 
+                            System.out.println("User created");
+                        }
+
+                        @Override
+                        public void onAuthenticationError(FirebaseError firebaseError) {
+                            System.out.println("Authentication Error authenticating newly created user. This could be an issue. ");
+                            System.out.println(firebaseError.getMessage());
+
+                        }
+                    });
                 }
 
+                @Override
                 public void onError(FirebaseError firebaseError) {
-                    Log.e("Register", "ERROR!!!" + firebaseError.getDetails());
+                    System.out.println("On Error authenticating newly created user. This could be an issue. ");
+                    System.out.println(firebaseError.getMessage());
 
                 }
             });
 
+            System.out.println("End Creating User");
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
-            myFB.authWithPassword(emailUsuario.getText().toString(), passwordUsuario.getText().toString(), new Firebase.AuthResultHandler() {
-                @Override
-                public void onAuthenticated(AuthData authData) {
-                    //System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                    Log.i("LOGIN", "IS IN THE DATABASE");
-                    flag = true;
-                }
-
-                @Override
-                public void onAuthenticationError(FirebaseError firebaseError) {
-                    Log.e("LOGIN", "ERROR!!!!");
-                }
-            });
-
-            if (flag){
-                Intent intent = new Intent(this,MainActivity.class );
-                startActivity(intent);
-
-                Toast.makeText(getApplicationContext(),
-                        "Usuario creado",
-                        Toast.LENGTH_SHORT).show();
-            }
         }
 
     }

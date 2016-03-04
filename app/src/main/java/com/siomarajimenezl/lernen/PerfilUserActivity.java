@@ -70,18 +70,15 @@ public class PerfilUserActivity extends AppCompatActivity {
     }
 
     public void eliminarUsuario(View v){
-
         Intent intent = new Intent(this, LoginActivity.class);
+        ref.child(authData.getUid()).removeValue();
+        //TODO: ELIMINAR EL ERROR DE QUE FALLO LA APLICACION
         startActivity(intent);
 
-        ref.child(authData.getUid()).removeValue();
 
-        Toast.makeText(getApplicationContext(),
-                "Usuario creado",
-                Toast.LENGTH_SHORT).show();
     }
 
-    public void salvarPropertyDevice(){
+    /*public void salvarPropertyDevice(){
         try{
 
             FileOutputStream fos = openFileOutput(FILE, Context.MODE_PRIVATE);
@@ -98,5 +95,5 @@ public class PerfilUserActivity extends AppCompatActivity {
     public void saveToProperty(View v){
         properties.setProperty("field", materias.getText().toString());
         
-    }
+    }*/
 }
