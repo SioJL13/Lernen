@@ -1,24 +1,34 @@
 package com.siomarajimenezl.lernen;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+//TODO: Checar por que se sube la lista cuando le das click
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     ListView lista;
     ArrayList<Tutors> tutors;
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
+
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
+
+        set(navMenuTitles,navMenuIcons);
 
         lista = (ListView)findViewById(R.id.listView3);
 
@@ -28,21 +38,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tutors.add(new Tutors("Juan Rodriguez", "Robotica", "IMT","Egresado de la UDG en el 2015, y actualmente trabajo en Flextronics"));
         tutors.add(new Tutors("Maria del Campo", "Etica y Civica", "Preparatoria", "Maestra en la preparatoria Juan Escutia."));
         tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
+        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
+        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
+        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
+
 
         MyAdapter myAdapter = new MyAdapter(tutors, this);
         lista.setAdapter(myAdapter);
         lista.setOnItemClickListener(this);
 
-    }
-
-    public void cambiarBuscarActivity(View v){
-        Intent intent = new Intent(this,BuscarActivity.class);
-        startActivity(intent);
-    }
-
-    public void cambiarPerfilUserActivity(View v){
-        Intent  intent = new Intent(this,PerfilUserActivity.class);
-        startActivity(intent);
     }
 
     @Override

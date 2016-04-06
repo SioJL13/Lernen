@@ -1,17 +1,28 @@
 package com.siomarajimenezl.lernen;
 
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class PerfilTutoresActivity extends AppCompatActivity {
+public class PerfilTutoresActivity extends BaseActivity {
 
     TextView nombre, curso, escolaridad, descripcion;
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_tutores);
+
+        // load titulos del string.xml
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        //load icons del strings.xml
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);
+
+        set(navMenuTitles, navMenuIcons);
 
         nombre = (TextView)findViewById(R.id.textName);
         curso = (TextView)findViewById(R.id.textCourse);

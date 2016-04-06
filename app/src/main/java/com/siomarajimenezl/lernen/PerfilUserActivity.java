@@ -2,6 +2,7 @@ package com.siomarajimenezl.lernen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,20 +23,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class PerfilUserActivity extends AppCompatActivity {
+public class PerfilUserActivity extends BaseActivity {
 
     private Firebase ref;
     private AuthData authData;
     TextView nombreUsuario, correoUsuario;
     EditText materias;
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
-    private final String FILE = "propiedadesUser.xml";
-    Properties properties;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_user);
+
+        // load titulos del string.xml
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        //load icons del strings.xml
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);
+
+        set(navMenuTitles, navMenuIcons);
 
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://vivid-heat-5652.firebaseio.com/Cliente");
@@ -47,8 +57,6 @@ public class PerfilUserActivity extends AppCompatActivity {
         correoUsuario = (TextView)findViewById(R.id.textEmail);
         materias = (EditText)findViewById(R.id.inputMaterias);
 
-        File file = new File(getFilesDir(),FILE);
-        properties = new Properties();
 
 
         autRef.addValueEventListener(new ValueEventListener() {
@@ -78,22 +86,5 @@ public class PerfilUserActivity extends AppCompatActivity {
 
     }
 
-    /*public void salvarPropertyDevice(){
-        try{
 
-            FileOutputStream fos = openFileOutput(FILE, Context.MODE_PRIVATE);
-            properties.storeToXML(fos, null);
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveToProperty(View v){
-        properties.setProperty("field", materias.getText().toString());
-        
-    }*/
 }
