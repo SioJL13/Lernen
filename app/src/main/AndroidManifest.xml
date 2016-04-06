@@ -22,6 +22,7 @@
         <activity android:name=".PerfilTutoresActivity" />
         <activity android:name=".PerfilUserActivity" />
         <activity android:name=".RegistrarActivity" />
+        <activity android:name=".ChatActivity" />
         <activity
             android:name=".EditarActivity"
             android:label="@string/title_activity_editar"

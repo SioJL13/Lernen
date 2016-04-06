@@ -150,12 +150,12 @@ public class BaseActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 break;
-            /*case 1:
-                Intent intent1 = new Intent(this, Second.class);
+            case 1:
+                Intent intent1 = new Intent(this, ChatActivity.class);
                 startActivity(intent1);
                 finish();
                 break;
-            case 2:
+            /*case 2:
                 Intent intent2 = new Intent(this, third.class);
                 startActivity(intent2);
                 finish();
