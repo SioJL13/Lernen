@@ -95,6 +95,9 @@ public class RegistrarActivity extends AppCompatActivity {
                             authMap.put("Nombre", nombreUsuario.getText().toString());
                             authMap.put("Email", emailUsuario.getText().toString());
                             authMap.put("Password", passwordUsuario.getText().toString());
+                            authMap.put("Telephone", "");
+                            authMap.put("Degree", "");
+                            authMap.put("Bio", "");
 
                             Firebase userRef = myFB.child("Cliente").child(authData.getUid());
 

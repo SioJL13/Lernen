@@ -1,8 +1,10 @@
 package com.siomarajimenezl.lernen;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class PerfilTutoresActivity extends BaseActivity {
@@ -38,5 +40,14 @@ public class PerfilTutoresActivity extends BaseActivity {
             descripcion.setText(extras.getString("Descripcion"));
         }
 
+    }
+
+    public void hacerCitaActivity(View v){
+        Intent intent = new Intent(this, CitaActivity.class);
+
+        intent.putExtra("NombreTutor", nombre.getText());
+        intent.putExtra("Curso", curso.getText());
+
+        startActivity(intent);
     }
 }

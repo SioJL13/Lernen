@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -20,7 +21,7 @@ public class EditarActivity extends AppCompatActivity {
 
     private Firebase ref;
     private AuthData authData;
-    EditText nombreUsuario;
+    EditText nombreUsuario, correoUsuario, telUsuario, degreeUsuario, bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,29 @@ public class EditarActivity extends AppCompatActivity {
         ref = new Firebase("https://vivid-heat-5652.firebaseio.com/Cliente");
 
         authData = ref.getAuth();
+        Firebase autRef = ref.child(authData.getUid());
 
         nombreUsuario = (EditText)findViewById(R.id.cambiaNom);
+        correoUsuario = (EditText)findViewById(R.id.editText);
+        telUsuario = (EditText)findViewById(R.id.editText2);
+        degreeUsuario = (EditText)findViewById(R.id.editText3);
+        bio = (EditText)findViewById(R.id.editText4);
+
+        autRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                nombreUsuario.setText(snapshot.child("Nombre").getValue().toString());
+                correoUsuario.setText(snapshot.child("Email").getValue().toString());
+                telUsuario.setText(snapshot.child("Telephone").getValue().toString());
+                degreeUsuario.setText(snapshot.child("Degree").getValue().toString());
+                bio.setText(snapshot.child("Bio").getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
     }
 
     public void regresar(View v){
@@ -41,6 +63,10 @@ public class EditarActivity extends AppCompatActivity {
 
             Firebase autRef = ref.child(authData.getUid());
             autRef.child("Nombre").setValue(nombreUsuario.getText().toString());
+            autRef.child("Email").setValue(correoUsuario.getText().toString());
+            autRef.child("Telephone").setValue(telUsuario.getText().toString());
+            autRef.child("Degree").setValue(degreeUsuario.getText().toString());
+            autRef.child("Bio").setValue(bio.getText().toString());
 
         }
 
