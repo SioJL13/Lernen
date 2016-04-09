@@ -14,6 +14,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
     ListView lista;
     ArrayList<Tutors> tutors;
+    //Drawer
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
 
