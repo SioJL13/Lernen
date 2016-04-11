@@ -18,23 +18,25 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.client.annotations.NotNull;
 
 import java.util.regex.Pattern;
-//TODO: Configurar el onclick para que valide la informacion!
+
 public class LoginActivity extends AppCompatActivity {
+
     private Firebase ref;
+    final int ERROR_PASSWORD = -16;
     Button loginButton;
     ProgressDialog progress;
-
-    EditText inputEmail, inputPassword;
+    TextInputLayout emailWrapper, passwordWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final TextInputLayout emailWrapper = (TextInputLayout)findViewById(R.id.usuarioWrapper);
-        final TextInputLayout passwordWrapper = (TextInputLayout)findViewById(R.id.passwordWrapper);
+        emailWrapper = (TextInputLayout)findViewById(R.id.usuarioWrapper);
+        passwordWrapper = (TextInputLayout)findViewById(R.id.passwordWrapper);
 
         emailWrapper.setHint("Email");
         passwordWrapper.setHint("Password");
@@ -43,35 +45,28 @@ public class LoginActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://vivid-heat-5652.firebaseIO.com");
 
-        inputEmail = (EditText)findViewById(R.id.inputEmail);
-        inputPassword = (EditText)findViewById(R.id.inputPassword);
         loginButton = (Button) findViewById(R.id.botonLogin);
 
-
     }
-
-    private void hideKeyboard() {
-        View view = getCurrentFocus();
-        if (view != null) {
-            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).
-                    hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
-
-    public boolean validatePassword(String password) {
-        return password.length() > 5;
-    }
-
-
-
 
     public void cambiarMainActivity(View v){
+        progress = ProgressDialog.show(this, "Autenticando datos", "Iniciando sesion", true);
+        String email = emailWrapper.getEditText().getText().toString();
+        String password = passwordWrapper.getEditText().getText().toString();
+        if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            emailWrapper.setError("Ingresa un correo valido");
+            progress.dismiss();
+        }else if(password.isEmpty() || password.length()<4){
+            passwordWrapper.setError("Ingresa un password valido");
+            progress.dismiss();
+        }else{
+            emailWrapper.setErrorEnabled(false);
+            passwordWrapper.setErrorEnabled(false);
+            Log.d("Pass", password);
+            Log.d("Email",email);
+        }
 
-        progress = ProgressDialog.show(this, "Autenticando datos","Iniciando sesion",true);
-
-
-        ref.authWithPassword(inputEmail.getText().toString(), inputPassword.getText().toString(), new Firebase.AuthResultHandler() {
-
+        ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
 
             @Override
             public void onAuthenticated(AuthData authData) {
@@ -84,10 +79,17 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                Log.e("LOGIN", "ERROR!!!!" + firebaseError.getMessage());
+                progress.dismiss();
+                if(firebaseError.getCode() == ERROR_PASSWORD){
+                    passwordWrapper.setError("Password incorrecto");
+                    Log.e("LOGIN", "ERROR!!!!" + firebaseError.getMessage());
+                }else{
+                    emailWrapper.setError("El correo no existe");
+                    Log.e("LOGIN", "ERROR!!!!" + firebaseError.getMessage());
+                }
+
             }
         });
-
 
     }
 
