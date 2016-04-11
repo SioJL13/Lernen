@@ -21,7 +21,8 @@
         <activity android:name=".BuscarActivity" />
         <activity android:name=".PerfilTutoresActivity" />
         <activity android:name=".PerfilUserActivity" />
-        <activity android:name=".RegistrarActivity" />
+        <activity android:name=".RegistrarActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ChatActivity" />
         <activity
             android:name=".EditarActivity"

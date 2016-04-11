@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Lernen</string>
     <string name="title_activity_editar">EditarActivity</string>
+
     <!--Login Activity-->
     <string name="email_user">Email</string>
     <string name="password_user">Password</string>
     <string name="boton_login">Iniciar sesion</string>
     <string name="sign_up">Crear una nueva cuenta</string>
+
+    <!--Registrar Activity-->
+    <string name="boton_crear">Crear cuenta</string>
 
 
     <string-array name="nav_drawer_items">

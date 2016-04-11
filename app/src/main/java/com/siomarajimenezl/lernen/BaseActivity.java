@@ -1,9 +1,5 @@
 package com.siomarajimenezl.lernen;
 
-/**
- * Created by siomarajimenezl on 4/6/16.
- */
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;

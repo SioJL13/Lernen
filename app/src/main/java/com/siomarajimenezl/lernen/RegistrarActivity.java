@@ -2,6 +2,7 @@ package com.siomarajimenezl.lernen;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,15 +18,12 @@ import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//TODO: Eliminar bug, si tienen el mismo mail.
 public class RegistrarActivity extends AppCompatActivity {
 
     private Firebase myFB;
 
-
-    EditText nombreUsuario;
-    EditText passwordUsuario;
-    EditText emailUsuario;
+    TextInputLayout nombreWrapper, passwordWrapper, emailWrapper;
 
 
     @Override
@@ -36,41 +34,42 @@ public class RegistrarActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         myFB = new Firebase("https://vivid-heat-5652.firebaseIO.com");
 
-        nombreUsuario = (EditText)findViewById(R.id.inputNombre);
-        passwordUsuario = (EditText)findViewById(R.id.inputPassword);
-        emailUsuario = (EditText) findViewById(R.id.inputEmail);
+        nombreWrapper = (TextInputLayout)findViewById(R.id.nombreRegWrapper);
+        emailWrapper = (TextInputLayout) findViewById(R.id.correoRegWrapper);
+        passwordWrapper = (TextInputLayout) findViewById(R.id.passwordRegWrapper);
 
+        nombreWrapper.setHint("Nombre");
+        emailWrapper.setHint("Correo electronico");
+        passwordWrapper.setHint("Password");
 
-
-        //flag = false;
     }
 
     public boolean validarRegistro(View v){
         boolean valido = true;
 
-        String nombre = nombreUsuario.getText().toString();
-        String email = emailUsuario.getText().toString();
-        String password = passwordUsuario.getText().toString();
+        String nombre = nombreWrapper.getEditText().getText().toString();
+        String email = emailWrapper.getEditText().getText().toString();
+        String password = passwordWrapper.getEditText().getText().toString();
 
         if(nombre.isEmpty() || nombre.length() < 3){
-            nombreUsuario.setError("Debe contener al menos 3 caracteres.");
+            nombreWrapper.setError("Debe contener al menos 3 caracteres.");
             valido = false;
         } else{
-            nombreUsuario.setError(null);
+            nombreWrapper.setErrorEnabled(false);
         }
 
         if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailUsuario.setError("Ingresa un correo correcto.");
+            emailWrapper.setError("Ingresa un correo correcto.");
             valido = false;
         } else{
-            emailUsuario.setError(null);
+            emailWrapper.setErrorEnabled(false);
         }
 
         if(password.isEmpty() || password.length() < 4 || password.length() > 10){
-            passwordUsuario.setError("Debe contener entre 4 y 10 caracteres alfanumericos.");
+            passwordWrapper.setError("Debe contener entre 4 y 10 caracteres alfanumericos.");
             valido = false;
         } else{
-            passwordUsuario.setError(null);
+            passwordWrapper.setErrorEnabled(false);
         }
 
         return valido;
@@ -80,21 +79,22 @@ public class RegistrarActivity extends AppCompatActivity {
 
         if(validarRegistro(v)){
 
-            myFB.createUser(emailUsuario.getText().toString(), passwordUsuario.getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
+            myFB.createUser(emailWrapper.getEditText().getText().toString(), passwordWrapper.getEditText().getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
 
 
                 @Override
                 public void onSuccess(Map<String, Object> result) {
                     System.out.println("Successfully created user account with uid: " + result.get("uid"));
 
-                    myFB.authWithPassword(emailUsuario.getText().toString(), passwordUsuario.getText().toString(), new Firebase.AuthResultHandler() {
+                    myFB.authWithPassword(emailWrapper.getEditText().getText().toString(),
+                                          passwordWrapper.getEditText().getText().toString(), new Firebase.AuthResultHandler() {
                         @Override
                         public void onAuthenticated(AuthData authData) {
                             HashMap<String, Object> authMap = new HashMap<String, Object>();
                             authMap.put("uid", authData.getUid());
-                            authMap.put("Nombre", nombreUsuario.getText().toString());
-                            authMap.put("Email", emailUsuario.getText().toString());
-                            authMap.put("Password", passwordUsuario.getText().toString());
+                            authMap.put("Nombre", nombreWrapper.getEditText().getText().toString());
+                            authMap.put("Email", emailWrapper.getEditText().getText().toString());
+                            authMap.put("Password", passwordWrapper.getEditText().getText().toString());
                             authMap.put("Telephone", "");
                             authMap.put("Degree", "");
                             authMap.put("Bio", "");
@@ -129,5 +129,10 @@ public class RegistrarActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void cambiarLogin(View v){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
