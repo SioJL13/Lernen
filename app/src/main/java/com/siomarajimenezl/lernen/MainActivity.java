@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-//TODO: Checar por que se sube la lista cuando le das click
+
 
 public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
