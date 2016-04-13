@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/icon"
         android:text="no text"
-        android:textColor="#fff"
+        android:textColor="#030303"
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:paddingRight="40dp"/>

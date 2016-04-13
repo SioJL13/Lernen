@@ -1,6 +1,7 @@
 package com.siomarajimenezl.lernen;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,7 +15,7 @@ import com.firebase.client.Firebase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FinCitaActivity extends AppCompatActivity {
+public class FinCitaActivity extends BaseActivity {
 
     private TimePicker tiempo;
     private EditText locacion;
@@ -22,11 +23,21 @@ public class FinCitaActivity extends AppCompatActivity {
     private AuthData authData;
     private String nombre, curso, fecha, hora;
     private int dia,mes,ano;
+    //Drawer
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fin_cita);
+
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
+
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
+
+        set(navMenuTitles, navMenuIcons);
 
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://vivid-heat-5652.firebaseio.com/Cliente");

@@ -46,6 +46,8 @@ public class BaseActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
+
+
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
         // adding nav drawer items
@@ -65,6 +67,9 @@ public class BaseActivity extends AppCompatActivity {
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
         mDrawerList.setAdapter(adapter);
+
+        //Cambiar color del listview
+        mDrawerList.setBackgroundResource(R.color.colorWhite);
 
         // enabling action bar app icon and behaving it as toggle button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,7 +95,7 @@ public class BaseActivity extends AppCompatActivity {
                 supportInvalidateOptionsMenu();
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
     }
 

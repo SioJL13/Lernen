@@ -13,13 +13,13 @@
 
 
     <string-array name="nav_drawer_items">
-        <item>Perfil</item>
+        <item>Mi cuenta</item>
         <item>Mensajes</item>
         <item>Tutores</item>
     </string-array>
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_person_black_24dp</item>
-        <item>@drawable/ic_message_black_24dp</item>
+        <item>@drawable/ic_account_circle_black_24dp</item>
+        <item>@drawable/ic_chat_black_24dp</item>
         <item>@drawable/ic_search_black_24dp</item>
     </array>
 
