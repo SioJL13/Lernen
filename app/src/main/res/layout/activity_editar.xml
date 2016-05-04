@@ -81,7 +81,7 @@
             android:layout_marginTop="4dp">
 
             <EditText
-                android:id="@+id/inputEditarBio"rosr
+                android:id="@+id/inputEditarBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
