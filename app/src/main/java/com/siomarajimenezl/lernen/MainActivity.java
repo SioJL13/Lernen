@@ -3,17 +3,23 @@ package com.siomarajimenezl.lernen;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
+//TODO: CAMBIAR TODAS LAS IMAGES
+//TODO: QUE LLAME AL JSON DESDE LOGIN Y SE QUEDE ESTATICO
+public class MainActivity extends BaseActivity implements JSONRequest.JSONCallback,AdapterView.OnItemClickListener {
 
-public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+    private ListView listaMain;
+    MyAdapter myAdapter;
 
-    ListView lista;
-    ArrayList<Tutors> tutors;
     //Drawer
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
@@ -31,34 +37,30 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
         set(navMenuTitles,navMenuIcons);
 
-        lista = (ListView)findViewById(R.id.listView3);
-
-        tutors = new ArrayList<Tutors>();
-        tutors.add(new Tutors("Carlos Castro", "Español", "Comunicacion", "Egresado del Tec del Monterrey Campus Monterrey."));
-        tutors.add(new Tutors("Patricia Huerta", "Matematicas Computacionales", "ISC", "Maestra de la materia en el ITESM campus Guadalajara."));
-        tutors.add(new Tutors("Juan Rodriguez", "Robotica", "IMT","Egresado de la UDG en el 2015, y actualmente trabajo en Flextronics"));
-        tutors.add(new Tutors("Maria del Campo", "Etica y Civica", "Preparatoria", "Maestra en la preparatoria Juan Escutia."));
-        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
-        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
-        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
-        tutors.add(new Tutors("Jose Alfredo Jimenez", "Artes Visuales", "Secundaria","Egresado de la carrera de Arte en NYU."));
+        this.listaMain = (ListView)findViewById(R.id.listViewMain);
+        this.listaMain.setOnItemClickListener(this);
 
 
-        MyAdapter myAdapter = new MyAdapter(tutors, this);
-        lista.setAdapter(myAdapter);
-        lista.setOnItemClickListener(this);
+    }
+
+    public void changeJSON(View v){
+        new JSONRequest(this).execute("https://raw.githubusercontent.com/SioJL13/Lernen/master/tutors.json");
+    }
+
+    @Override
+    public void requestComplete(JSONArray array) {
+        myAdapter = new MyAdapter(array,MainActivity.this);
+        this.listaMain.setAdapter(myAdapter);
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        JSONObject jsonObject = (JSONObject)myAdapter.getItem(position);
 
         Intent i = new Intent(getApplicationContext(), PerfilTutoresActivity.class);
-
-        i.putExtra("NombreTutor", tutors.get(position).getNombre());
-        i.putExtra("Curso", tutors.get(position).getCourse());
-        i.putExtra("Escolaridad", tutors.get(position).getDegree());
-        i.putExtra("Descripcion", tutors.get(position).getDescripcion());
+        String pos_json = jsonObject.toString();
+        i.putExtra("pos_json",pos_json);
 
         startActivity(i);
     }

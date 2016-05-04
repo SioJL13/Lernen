@@ -26,6 +26,7 @@ public class FinCitaActivity extends BaseActivity {
     //Drawer
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class FinCitaActivity extends BaseActivity {
 
         authData = ref.getAuth();
         autRef = ref.child(authData.getUid()).child("Citas");
+
 
         tiempo = (TimePicker)findViewById(R.id.timePicker);
         locacion = (EditText)findViewById(R.id.editText5);
@@ -66,7 +68,7 @@ public class FinCitaActivity extends BaseActivity {
 
     public void finCitaActivity(View v){
         Intent i = new Intent(this, MainActivity.class);
-
+        //TODO: REVISAR ERRORES
         hora = String.valueOf(tiempo.getHour()) + ":" + String.valueOf(tiempo.getMinute());
 
         Map<String, String>citaDatos = new HashMap<String, String>();
@@ -77,7 +79,8 @@ public class FinCitaActivity extends BaseActivity {
         citaDatos.put("Lugar", locacion.getText().toString());
 
         Map<String, Map<String, String>> users = new HashMap<String, Map<String, String>>();
-        users.put("Cita", citaDatos);
+        users.put("Cita" + counter, citaDatos);
+        counter++;
 
         autRef.setValue(users);
 

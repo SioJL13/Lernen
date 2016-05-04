@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -20,9 +21,11 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.firebase.client.annotations.NotNull;
 
+import org.json.JSONArray;
+
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
     private Firebase ref;
     final int ERROR_PASSWORD = -16;
@@ -30,10 +33,15 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progress;
     TextInputLayout emailWrapper, passwordWrapper;
 
+    //JSON Request
+    private ListView lista;
+    MyAdapter myAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         emailWrapper = (TextInputLayout)findViewById(R.id.usuarioWrapper);
         passwordWrapper = (TextInputLayout)findViewById(R.id.passwordWrapper);
@@ -51,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void cambiarMainActivity(View v){
         progress = ProgressDialog.show(this, "Autenticando datos", "Iniciando sesion", true);
+
         String email = emailWrapper.getEditText().getText().toString();
         String password = passwordWrapper.getEditText().getText().toString();
         if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -72,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthenticated(AuthData authData) {
                 System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class).putExtra("UID", authData.getUid());
+
                 startActivity(intent);
                 progress.dismiss();
 

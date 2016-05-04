@@ -4,14 +4,23 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class PerfilTutoresActivity extends BaseActivity {
+import org.json.JSONArray;
+import org.json.JSONObject;
+//TODO: CARGAR SU IMAGEN CON PICASSO
+//TODO: ARREGLAR EL DISENO
+public class PerfilTutoresActivity extends BaseActivity  {
 
-    TextView nombre, curso, escolaridad, descripcion;
+    TextView nombre, materia, escolaridad, descripcion;
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+
+    //JSON Request
+    private JSONObject jsonObject;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,33 +30,44 @@ public class PerfilTutoresActivity extends BaseActivity {
         // load titulos del string.xml
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
         //load icons del strings.xml
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         set(navMenuTitles, navMenuIcons);
 
-        nombre = (TextView)findViewById(R.id.textName);
-        curso = (TextView)findViewById(R.id.textCourse);
-        escolaridad = (TextView)findViewById(R.id.textDegree);
-        descripcion = (TextView)findViewById(R.id.textDescripcion);
+        nombre = (TextView) findViewById(R.id.textName);
+        materia = (TextView) findViewById(R.id.textMateria);
+        escolaridad = (TextView) findViewById(R.id.textDegree);
+        descripcion = (TextView) findViewById(R.id.textDescripcion);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        try {
+            jsonObject = new JSONObject(getIntent().getStringExtra("pos_json"));
+            String name = jsonObject.get("nombre").toString();
+            String course = jsonObject.get("materia").toString();
+            String degree = jsonObject.get("escolaridad").toString();
+            String bio = jsonObject.get("biografia").toString();
 
-            nombre.setText(extras.getString("NombreTutor"));
-            curso.setText(extras.getString("Curso"));
-            escolaridad.setText(extras.getString("Escolaridad"));
-            descripcion.setText(extras.getString("Descripcion"));
+
+            //Log.d("D", nombres);
+            nombre.setText(name);
+            materia.setText(course);
+            escolaridad.setText(degree);
+            descripcion.setText(bio);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
+
 
     public void hacerCitaActivity(View v){
         Intent intent = new Intent(this, CitaActivity.class);
 
         intent.putExtra("NombreTutor", nombre.getText());
-        intent.putExtra("Curso", curso.getText());
+        intent.putExtra("Curso", materia.getText());
 
         startActivity(intent);
     }
+
+
 }
