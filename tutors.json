@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nombre": "Leanne Graham",
+    "materia": "Ingles",
+    "escolaridad": "Institutriz",
+    "biografia": "Egresada de Cambridge",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Ervin Howell",
+    "materia": "Matematicas Computacionales",
+    "escolaridad": "ISC",
+    "biografia": "Egresado del ITESO",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Clementine Bauch",
+    "materia": "Etica y Civica",
+    "escolaridad": "Preparatoria",
+    "biografia": "Estudiante 5to semestre Prepa",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Anne Dietrich",
+    "materia": "Literatura",
+    "escolaridad": "Lic. en Letras",
+    "biografia": "Egresada de la UNAM",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Chelsey Dietrich",
+    "materia": "Calculo",
+    "escolaridad": "Ing. en Logistica",
+    "biografia": "Egresado de la UP",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Mrs. Dennis Schulist",
+    "materia": "Canto",
+    "escolaridad": "Lic. en Canto",
+    "biografia": "Egresada de NYU",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Kurtis Weissnat",
+    "materia": "Botanica",
+    "escolaridad": "Lic. en Biologia",
+    "biografia": "Egresada de la UNAM",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Nicholas Runolfsdottir V",
+    "materia": "Quimica",
+    "escolaridad": "Lic. en Quimica Farmacobiologa",
+    "biografia": "Egresada del Politecnico Nacional",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Glenna Reichert",
+    "materia": "Bases de Datos",
+    "escolaridad": "Lic. en Tecnologias de la Informacion",
+    "biografia": "Egresada de UNIVA",
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Clementina DuBuque",
+    "materia": "Calidad y Pruebas de Software",
+    "escolaridad": "ISC",
+    "biografia": "Egresada de ISC", 
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
+  }
+]
