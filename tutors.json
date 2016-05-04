@@ -5,7 +5,7 @@
     "materia": "Ingles",
     "escolaridad": "Institutriz",
     "biografia": "Egresada de Cambridge",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "materia": "Matematicas Computacionales",
     "escolaridad": "ISC",
     "biografia": "Egresado del ITESO",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "materia": "Etica y Civica",
     "escolaridad": "Preparatoria",
     "biografia": "Estudiante 5to semestre Prepa",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "materia": "Literatura",
     "escolaridad": "Lic. en Letras",
     "biografia": "Egresada de la UNAM",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "materia": "Calculo",
     "escolaridad": "Ing. en Logistica",
     "biografia": "Egresado de la UP",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "materia": "Canto",
     "escolaridad": "Lic. en Canto",
     "biografia": "Egresada de NYU",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "materia": "Botanica",
     "escolaridad": "Lic. en Biologia",
     "biografia": "Egresada de la UNAM",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "materia": "Quimica",
     "escolaridad": "Lic. en Quimica Farmacobiologa",
     "biografia": "Egresada del Politecnico Nacional",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "materia": "Bases de Datos",
     "escolaridad": "Lic. en Tecnologias de la Informacion",
     "biografia": "Egresada de UNIVA",
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   },
   {
     "id": 10,
@@ -77,6 +77,6 @@
     "materia": "Calidad y Pruebas de Software",
     "escolaridad": "ISC",
     "biografia": "Egresada de ISC", 
-    "foto":"null"
+    "foto":"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"
   }
 ]
