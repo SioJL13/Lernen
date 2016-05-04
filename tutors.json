@@ -5,78 +5,78 @@
     "materia": "Ingles",
     "escolaridad": "Institutriz",
     "biografia": "Egresada de Cambridge",
-    "foto":" "
+    "foto":"null"
   },
   {
     "id": 2,
     "nombre": "Ervin Howell",
     "materia": "Matematicas Computacionales",
     "escolaridad": "ISC",
-    "biografia": "Egresado del ITESO"
-    "foto":" "
+    "biografia": "Egresado del ITESO",
+    "foto":"null"
   },
   {
     "id": 3,
     "nombre": "Clementine Bauch",
     "materia": "Etica y Civica",
     "escolaridad": "Preparatoria",
-    "biografia": "Estudiante 5to semestre Prepa"
-    "foto":" "
+    "biografia": "Estudiante 5to semestre Prepa",
+    "foto":"null"
   },
   {
     "id": 4,
     "nombre": "Anne Dietrich",
     "materia": "Literatura",
     "escolaridad": "Lic. en Letras",
-    "biografia": "Egresada de la UNAM"
-    "foto":" "
+    "biografia": "Egresada de la UNAM",
+    "foto":"null"
   },
   {
     "id": 5,
     "nombre": "Chelsey Dietrich",
     "materia": "Calculo",
     "escolaridad": "Ing. en Logistica",
-    "biografia": "Egresado de la UP"
-    "foto":" "
+    "biografia": "Egresado de la UP",
+    "foto":"null"
   },
   {
     "id": 6,
     "nombre": "Mrs. Dennis Schulist",
     "materia": "Canto",
     "escolaridad": "Lic. en Canto",
-    "biografia": "Egresada de NYU"
-    "foto":" "
+    "biografia": "Egresada de NYU",
+    "foto":"null"
   },
   {
     "id": 7,
     "nombre": "Kurtis Weissnat",
     "materia": "Botanica",
     "escolaridad": "Lic. en Biologia",
-    "biografia": "Egresada de la UNAM"
-    "foto":" "
+    "biografia": "Egresada de la UNAM",
+    "foto":"null"
   },
   {
     "id": 8,
     "nombre": "Nicholas Runolfsdottir V",
     "materia": "Quimica",
     "escolaridad": "Lic. en Quimica Farmacobiologa",
-    "biografia": "Egresada del Politecnico Nacional"
-    "foto":" "
+    "biografia": "Egresada del Politecnico Nacional",
+    "foto":"null"
   },
   {
     "id": 9,
     "nombre": "Glenna Reichert",
     "materia": "Bases de Datos",
     "escolaridad": "Lic. en Tecnologias de la Informacion",
-    "biografia": "Egresada de UNIVA"
-    "foto":" "
+    "biografia": "Egresada de UNIVA",
+    "foto":"null"
   },
   {
     "id": 10,
     "nombre": "Clementina DuBuque",
     "materia": "Calidad y Pruebas de Software",
     "escolaridad": "ISC",
-    "biografia": "Egresada de ISC" 
-    "foto":" "
+    "biografia": "Egresada de ISC", 
+    "foto":"null"
   }
 ]
