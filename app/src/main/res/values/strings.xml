@@ -11,6 +11,9 @@
     <!--Registrar Activity-->
     <string name="boton_crear">Crear cuenta</string>
 
+    <!--Editar Activity-->
+    <string name="boton_salvar">Guardar</string>
+    <string name="boton_cancelar">Cancelar</string>
 
     <string-array name="nav_drawer_items">
         <item>Mi cuenta</item>

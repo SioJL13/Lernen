@@ -27,8 +27,7 @@ public class PerfilUserActivity extends BaseActivity {
 
     private Firebase ref;
     private AuthData authData;
-    TextView nombreUsuario, correoUsuario,telUsuario, degreeUsuario, bio;;
-    EditText materias;
+    TextView nombreUsuario, correoUsuario,telUsuario, degreeUsuario, bio;
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
 
@@ -66,6 +65,7 @@ public class PerfilUserActivity extends BaseActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 nombreUsuario.setText(snapshot.child("Nombre").getValue().toString());
                 correoUsuario.setText(snapshot.child("Email").getValue().toString());
+                Log.d("PRUEBA", snapshot.child("Telephone") + "");
                 telUsuario.setText(snapshot.child("Telephone").getValue().toString());
                 degreeUsuario.setText(snapshot.child("Degree").getValue().toString());
                 bio.setText(snapshot.child("Bio").getValue().toString());

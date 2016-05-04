@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,7 +22,10 @@ public class EditarActivity extends AppCompatActivity {
 
     private Firebase ref;
     private AuthData authData;
+    //TextInputLayout  nombreUsuario, correoUsuario, telUsuario, degreeUsuario, bio;
+
     EditText nombreUsuario, correoUsuario, telUsuario, degreeUsuario, bio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +38,15 @@ public class EditarActivity extends AppCompatActivity {
         authData = ref.getAuth();
         Firebase autRef = ref.child(authData.getUid());
 
-        nombreUsuario = (EditText)findViewById(R.id.cambiaNom);
-        correoUsuario = (EditText)findViewById(R.id.editText);
-        telUsuario = (EditText)findViewById(R.id.editText2);
-        degreeUsuario = (EditText)findViewById(R.id.editText3);
-        bio = (EditText)findViewById(R.id.editText4);
+        nombreUsuario = (EditText)findViewById(R.id.inputEditarNombre);
+        correoUsuario = (EditText)findViewById(R.id.inputEditarEmail);
+        telUsuario = (EditText)findViewById(R.id.inputEditarTelefono);
+        degreeUsuario = (EditText)findViewById(R.id.inputEditarDegree);
+        bio = (EditText)findViewById(R.id.inputEditarBio);
+
+        telUsuario.setHint("Telefono");
+        degreeUsuario.setHint("Escolaridad");
+        bio.setHint("Biografia");
 
         autRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,6 +78,11 @@ public class EditarActivity extends AppCompatActivity {
 
         }
 
+        Intent intent = new Intent(this, PerfilUserActivity.class);
+        startActivity(intent);
+    }
+
+    public void cancelarBoton(View v){
         Intent intent = new Intent(this, PerfilUserActivity.class);
         startActivity(intent);
     }
