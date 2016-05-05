@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 //TODO: CAMBIAR TODAS LAS IMAGES
-//TODO: QUE LLAME AL JSON DESDE LOGIN Y SE QUEDE ESTATICO
+
 public class MainActivity extends BaseActivity implements JSONRequest.JSONCallback,AdapterView.OnItemClickListener {
 
     private ListView listaMain;
@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity implements JSONRequest.JSONCallba
                 .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
 
         set(navMenuTitles,navMenuIcons);
+        changeJSON();
 
         this.listaMain = (ListView)findViewById(R.id.listViewMain);
         this.listaMain.setOnItemClickListener(this);
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity implements JSONRequest.JSONCallba
 
     }
 
-    public void changeJSON(View v){
+    public void changeJSON(){
         new JSONRequest(this).execute("https://raw.githubusercontent.com/SioJL13/Lernen/master/tutors.json");
     }
 
