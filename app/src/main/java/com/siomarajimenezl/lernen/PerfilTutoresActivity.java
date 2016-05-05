@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,6 +20,7 @@ public class PerfilTutoresActivity extends BaseActivity  {
     TextView nombre, materia, escolaridad, descripcion;
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    ImageView picture;
 
     //JSON Request
     private JSONObject jsonObject;
@@ -38,6 +42,8 @@ public class PerfilTutoresActivity extends BaseActivity  {
         materia = (TextView) findViewById(R.id.textMateria);
         escolaridad = (TextView) findViewById(R.id.textDegree);
         descripcion = (TextView) findViewById(R.id.textDescripcion);
+        picture = (ImageView)findViewById(R.id.imageView3);
+
 
         try {
             jsonObject = new JSONObject(getIntent().getStringExtra("pos_json"));
@@ -45,6 +51,7 @@ public class PerfilTutoresActivity extends BaseActivity  {
             String course = jsonObject.get("materia").toString();
             String degree = jsonObject.get("escolaridad").toString();
             String bio = jsonObject.get("biografia").toString();
+            String foto = jsonObject.get("foto").toString();
 
 
             //Log.d("D", nombres);
@@ -52,7 +59,9 @@ public class PerfilTutoresActivity extends BaseActivity  {
             materia.setText(course);
             escolaridad.setText(degree);
             descripcion.setText(bio);
-
+            Picasso.with(getApplicationContext())
+                    .load(foto)
+                    .into(picture);
 
         } catch (Exception e) {
             e.printStackTrace();

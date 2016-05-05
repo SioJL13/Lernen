@@ -17,34 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Degree"
-                android:id="@+id/textDegree"
-                android:layout_below="@+id/textName"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Biografia"
-                android:id="@+id/textDescripcion"
-                android:layout_below="@+id/imageView3"
-                android:layout_alignLeft="@+id/textDegree"
-                android:layout_alignStart="@+id/textDegree" />
-
             <ImageView
-                android:layout_width="57dp"
-                android:layout_height="101dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/imageView3"
                 android:src="@drawable/user"
-                android:layout_gravity="right|top"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,19 +32,20 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nombre"
                 android:id="@+id/textName"
-                android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/button"
-                android:layout_alignStart="@+id/button" />
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="60dp"
+                android:layout_alignTop="@+id/imageView3"
+                android:layout_centerHorizontal="true" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear cita"
-                android:id="@+id/button"
-                android:layout_below="@+id/textDescripcion"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="33dp"
-                android:onClick="hacerCitaActivity" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Degree"
+                android:id="@+id/textDegree"
+                android:layout_below="@+id/textName"
+                android:layout_alignLeft="@+id/textName"
+                android:layout_alignStart="@+id/textName" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,8 +53,33 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Materia"
                 android:id="@+id/textMateria"
-                android:layout_above="@+id/textDescripcion"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignBottom="@+id/imageView3"
+                android:layout_alignLeft="@+id/textDegree"
+                android:layout_alignStart="@+id/textDegree" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Biografia"
+                android:id="@+id/textDescripcion"
+                android:layout_marginTop="56dp"
+                android:layout_below="@+id/imageView3"
+                android:layout_alignLeft="@+id/imageView3"
+                android:layout_alignStart="@+id/imageView3" />
+
+
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear cita"
+                android:id="@+id/button"
+                android:onClick="hacerCitaActivity"
+                android:layout_alignParentBottom="true" />
+
+
 
 
         </RelativeLayout>
