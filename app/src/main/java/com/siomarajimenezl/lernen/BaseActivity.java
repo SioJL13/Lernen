@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,6 +37,11 @@ public class BaseActivity extends AppCompatActivity {
     // used to store app title
     private CharSequence mTitle;
 
+    // get the name of the user
+    private String Cliente;
+    private Firebase ref;
+    private AuthData authData;
+
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
@@ -37,6 +49,26 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
+
+        ref = new Firebase("https://vivid-heat-5652.firebaseio.com/Cliente");
+
+        authData = ref.getAuth();
+        Firebase autRef = ref.child(authData.getUid());
+
+        autRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //Log.d("Nombre", snapshot.child("Nombre").getValue().toString());
+                Cliente = snapshot.child("Nombre").getValue().toString();
+                Log.d("Cliente", Cliente);
+                //Log.d("User", mUsername);
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
 
     }
 
@@ -153,6 +185,7 @@ public class BaseActivity extends AppCompatActivity {
                 break;
             case 1:
                 Intent intent1 = new Intent(this, ChatActivity.class);
+                intent1.putExtra("Nombre", Cliente);
                 startActivity(intent1);
                 finish();
                 break;

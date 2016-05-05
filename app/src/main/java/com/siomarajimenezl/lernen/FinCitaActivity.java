@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,12 +25,11 @@ public class FinCitaActivity extends BaseActivity {
     private EditText locacion;
     private Firebase ref, autRef;
     private AuthData authData;
-    private String nombre, curso, fecha, hora;
+    private String nombre, curso, fecha, hora, numCita;
     private int dia,mes,ano;
     //Drawer
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
-    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,19 @@ public class FinCitaActivity extends BaseActivity {
 
         fecha = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano);
 
+        autRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                numCita = snapshot.child("Contador").getValue().toString();
+                Log.d("Contador", numCita);
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
 
     }
 
@@ -78,11 +94,11 @@ public class FinCitaActivity extends BaseActivity {
         citaDatos.put("Hora", hora);
         citaDatos.put("Lugar", locacion.getText().toString());
 
-        Map<String, Map<String, String>> users = new HashMap<String, Map<String, String>>();
-        users.put("Cita" + counter, citaDatos);
-        counter++;
+        Firebase userRef = autRef.child(numCita);
 
-        autRef.setValue(users);
+        userRef.setValue(citaDatos);
+
+        autRef.child("Contador").setValue(Integer.parseInt(numCita) + 1);
 
         Toast.makeText(getApplicationContext(),
                 "Cita creada",

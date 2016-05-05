@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -26,6 +28,7 @@ public class ChatActivity extends ListActivity {
     private static final String FIREBASE_URL = "https://vivid-torch-7570.firebaseio.com/";
 
     private String mUsername;
+    private String nombre;
     private Firebase mFirebaseRef;
     private ValueEventListener mConnectedListener;
     private ChatListAdapter mChatListAdapter;
@@ -35,13 +38,20 @@ public class ChatActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        Firebase.setAndroidContext(this);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
+            nombre = extras.getString("Nombre");
+        }
+
+        // Setup our Firebase mFirebaseRef
+        mFirebaseRef = new Firebase(FIREBASE_URL).child("chat");
         // Make sure we have a mUsername
         setupUsername();
 
         setTitle("Chatting as " + mUsername);
-
-        // Setup our Firebase mFirebaseRef
-        mFirebaseRef = new Firebase(FIREBASE_URL).child("chat");
 
         // Setup our input methods. Enter key on the keyboard or pushing the send button
         EditText inputText = (EditText) findViewById(R.id.messageInput);
@@ -108,12 +118,12 @@ public class ChatActivity extends ListActivity {
 
     private void setupUsername() {
         SharedPreferences prefs = getApplication().getSharedPreferences("ChatPrefs", 0);
-        mUsername = prefs.getString("username", null);
+        //mUsername = prefs.getString("username", mUsername);
         if (mUsername == null) {
             Random r = new Random();
             // Assign a random user name if we don't have one saved.
             //TODO: CAMBIAR POR EL NOMBRE DEL QUE HACE LOGIN
-            mUsername = "User";
+            mUsername = nombre;
             prefs.edit().putString("username", mUsername).commit();
         }
     }

@@ -103,6 +103,14 @@ public class RegistrarActivity extends AppCompatActivity {
 
                             userRef.setValue(authMap);
 
+                            HashMap<String, Object> citaMap = new HashMap<String, Object>();
+
+                            citaMap.put("Contador", 0);
+
+                            Firebase cntRef = userRef.child("Citas");
+
+                            cntRef.setValue(citaMap);
+
                             System.out.println("User created");
                         }
 
