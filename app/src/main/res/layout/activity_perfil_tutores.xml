@@ -18,8 +18,8 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:id="@+id/imageView3"
                 android:src="@drawable/user"
                 android:layout_marginLeft="16dp"
@@ -32,8 +32,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nombre"
                 android:id="@+id/textName"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="60dp"
                 android:layout_alignTop="@+id/imageView3"
                 android:layout_centerHorizontal="true" />
 
@@ -53,9 +51,10 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Materia"
                 android:id="@+id/textMateria"
-                android:layout_alignBottom="@+id/imageView3"
                 android:layout_alignLeft="@+id/textDegree"
-                android:layout_alignStart="@+id/textDegree" />
+                android:layout_alignStart="@+id/textDegree"
+                android:layout_below="@+id/textDegree"
+                android:layout_alignBottom="@+id/imageView3" />
 
 
             <TextView

@@ -1,5 +1,6 @@
 package com.siomarajimenezl.lernen;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -30,6 +31,8 @@ public class PerfilUserActivity extends BaseActivity {
     TextView nombreUsuario, correoUsuario,telUsuario, degreeUsuario, bio;
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    private String email_user,password_user;
+    ProgressDialog progress;
 
 
 
@@ -63,6 +66,9 @@ public class PerfilUserActivity extends BaseActivity {
         autRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                email_user = snapshot.child("Email").getValue().toString();
+                password_user = snapshot.child("Password").getValue().toString();
+
                 nombreUsuario.setText(snapshot.child("Nombre").getValue().toString());
                 correoUsuario.setText(snapshot.child("Email").getValue().toString());
                 Log.d("PRUEBA", snapshot.child("Telephone") + "");
@@ -83,10 +89,31 @@ public class PerfilUserActivity extends BaseActivity {
     }
 
     public void eliminarUsuario(View v){
-        Intent intent = new Intent(this, LoginActivity.class);
+        progress = ProgressDialog.show(this,"Eliminando cuenta","No cierres la aplicacion", true);
+
+
+        ref.removeUser(email_user, password_user, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                Log.d("Sucess", "Logout");
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                startActivity(intent);
+                progress.dismiss();
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                Log.d("Error al eliminar", firebaseError.getMessage());
+
+            }
+        });
+
         ref.child(authData.getUid()).removeValue();
+        Log.d("Remove", email_user);
+        Log.d("PASSWORD DELETE", password_user);
         //TODO: ELIMINAR EL ERROR DE QUE FALLO LA APLICACION
-        startActivity(intent);
+
 
 
     }
