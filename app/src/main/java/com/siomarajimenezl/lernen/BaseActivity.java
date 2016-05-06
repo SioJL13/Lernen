@@ -194,6 +194,12 @@ public class BaseActivity extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 break;
+            case 3:
+                Intent intent3 = new Intent(this, MostarCitasActivity.class);
+                startActivity(intent3);
+                finish();
+                break;
+
         }
 
         // update selected item and title, then close the drawer

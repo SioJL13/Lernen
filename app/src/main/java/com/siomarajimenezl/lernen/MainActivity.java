@@ -29,7 +29,6 @@ public class MainActivity extends BaseActivity implements JSONRequest.JSONCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
 
         navMenuIcons = getResources()
