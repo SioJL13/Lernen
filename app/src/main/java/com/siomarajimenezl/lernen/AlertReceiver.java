@@ -16,7 +16,7 @@ public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        createNotification(context, "Times Up", "5 Seconds Has Passed", "Alert");
+        createNotification(context, "Lernen", "Tienes una cita proxima", "Alert");
 
     }
 
@@ -29,7 +29,7 @@ public class AlertReceiver extends BroadcastReceiver {
         // Builds a notification
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.ic_account_circle_black_24dp)
+                        .setSmallIcon(R.drawable.ic_alarm_black_24dp)
                         .setContentTitle(msg)
                         .setTicker(msgAlert)
                         .setContentText(msgText);

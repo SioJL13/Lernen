@@ -20,12 +20,14 @@
         <item>Mensajes</item>
         <item>Tutores</item>
         <item>Citas</item>
+        <item>Salir</item>
     </string-array>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_account_circle_black_24dp</item>
         <item>@drawable/ic_chat_black_24dp</item>
         <item>@drawable/ic_search_black_24dp</item>
-        <item>@drawable/ic_search_black_24dp</item>
+        <item>@drawable/ic_event_black_24dp</item>
+        <item>@drawable/ic_exit_to_app_black_24dp</item>
 
     </array>
     <string name="title_activity_mostar_citas">MostarCitasActivity</string>

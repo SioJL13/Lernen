@@ -59,8 +59,14 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //Log.d("Nombre", snapshot.child("Nombre").getValue().toString());
-                Cliente = snapshot.child("Nombre").getValue().toString();
-                Log.d("Cliente", Cliente);
+                try{
+                    Cliente = snapshot.child("Nombre").getValue().toString();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                //Log.d("Cliente", Cliente);
                 //Log.d("User", mUsername);
 
             }
@@ -197,6 +203,12 @@ public class BaseActivity extends AppCompatActivity {
             case 3:
                 Intent intent3 = new Intent(this, MostarCitasActivity.class);
                 startActivity(intent3);
+                finish();
+                break;
+            case 4:
+                Intent intent4 = new Intent(this, LoginActivity.class);
+                ref.unauth();
+                startActivity(intent4);
                 finish();
                 break;
 

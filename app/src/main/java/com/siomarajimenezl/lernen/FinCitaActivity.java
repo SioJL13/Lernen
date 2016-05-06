@@ -1,6 +1,7 @@
 package com.siomarajimenezl.lernen;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ public class FinCitaActivity extends BaseActivity {
     //Drawer
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class FinCitaActivity extends BaseActivity {
     }
 
     public void finCitaActivity(View v){
+        //View vi = findViewById(android.R.id.content);
         Intent i = new Intent(this, MainActivity.class);
         //TODO: REVISAR ERRORES
         hora = String.valueOf(tiempo.getHour()) + ":" + String.valueOf(tiempo.getMinute());
@@ -109,6 +112,8 @@ public class FinCitaActivity extends BaseActivity {
         Toast.makeText(getApplicationContext(),
                 "Cita creada",
                 Toast.LENGTH_LONG).show();
+
+        setAlarm(v);
 
         startActivity(i);
     }

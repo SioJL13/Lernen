@@ -66,15 +66,19 @@ public class PerfilUserActivity extends BaseActivity {
         autRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                email_user = snapshot.child("Email").getValue().toString();
-                password_user = snapshot.child("Password").getValue().toString();
+                try {
+                    email_user = snapshot.child("Email").getValue().toString();
+                    password_user = snapshot.child("Password").getValue().toString();
 
-                nombreUsuario.setText(snapshot.child("Nombre").getValue().toString());
-                correoUsuario.setText(snapshot.child("Email").getValue().toString());
-                Log.d("PRUEBA", snapshot.child("Telephone") + "");
-                telUsuario.setText(snapshot.child("Telephone").getValue().toString());
-                degreeUsuario.setText(snapshot.child("Degree").getValue().toString());
-                bio.setText(snapshot.child("Bio").getValue().toString());
+                    nombreUsuario.setText(snapshot.child("Nombre").getValue().toString());
+                    correoUsuario.setText(snapshot.child("Email").getValue().toString());
+                    Log.d("PRUEBA", snapshot.child("Telephone") + "");
+                    telUsuario.setText(snapshot.child("Telephone").getValue().toString());
+                    degreeUsuario.setText(snapshot.child("Degree").getValue().toString());
+                    bio.setText(snapshot.child("Bio").getValue().toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
             @Override
