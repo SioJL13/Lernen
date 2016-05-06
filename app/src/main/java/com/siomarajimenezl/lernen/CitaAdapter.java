@@ -18,12 +18,12 @@ import org.json.JSONObject;
  */
 public class CitaAdapter extends BaseAdapter {
     // container we need to adapt
-    private JSONArray citas;
+    private JSONObject citas;
 
     // to attach interface we need a reference to an activity
     Activity activity;
 
-    public CitaAdapter(JSONArray citas, Activity activity){
+    public CitaAdapter(JSONObject citas, Activity activity){
 
         this.citas = citas;
         this.activity = activity;
@@ -43,7 +43,7 @@ public class CitaAdapter extends BaseAdapter {
         if(citas ==null){
             return null;
         }else{
-            return citas.optJSONObject(position);
+            return citas.optJSONObject(String.valueOf(position));
         }
     }
 

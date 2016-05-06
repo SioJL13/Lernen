@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class MostarCitasActivity extends BaseActivity implements JSONRequest.JSONCallback {
+import java.io.IOException;
+import java.util.Iterator;
+
+public class MostarCitasActivity extends BaseActivity implements JSONObjectRequest.JSONObjectCallback {
 
     //Drawer
     private String[] navMenuTitles;
@@ -44,22 +50,23 @@ public class MostarCitasActivity extends BaseActivity implements JSONRequest.JSO
 
         changeJSON();
 
-        /*this.listaCita = (ListView)findViewById(R.id.listView2);*/
-
-
     }
 
     public void changeJSON(){
-        new JSONRequest(this).execute("https://vivid-heat-5652.firebaseio.com/Cliente/" + authData.getUid() + "/Citas.json");
+        new JSONObjectRequest(this).execute("https://vivid-heat-5652.firebaseio.com/Cliente/" + authData.getUid() + "/Citas.json");
     }
+
 
     @Override
-    public void requestComplete(JSONArray array) {
+    public void requestComplete(JSONObject object) {
 
-        Log.d("Size", String.valueOf(array.length()));
-        /*citaAdapter = new CitaAdapter(array,MostarCitasActivity.this);
-        this.listaCita.setAdapter(citaAdapter);*/
+        for(int i = 0; i < object.length() - 1; i++){
+            try {
+                Log.d("CHECK", object.getString(String.valueOf(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
-
 }
