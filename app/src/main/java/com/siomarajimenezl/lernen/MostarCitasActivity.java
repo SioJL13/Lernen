@@ -50,6 +50,8 @@ public class MostarCitasActivity extends BaseActivity implements JSONObjectReque
 
         changeJSON();
 
+        this.listaCita = (ListView)findViewById(R.id.listView2);
+
     }
 
     public void changeJSON(){
@@ -60,13 +62,17 @@ public class MostarCitasActivity extends BaseActivity implements JSONObjectReque
     @Override
     public void requestComplete(JSONObject object) {
 
-        for(int i = 0; i < object.length() - 1; i++){
+        /*for(int i = 0; i < object.length(); i++){
             try {
                 Log.d("CHECK", object.getString(String.valueOf(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-        }
+        }*/
+        object.remove("Contador");
+
+        citaAdapter = new CitaAdapter(object,MostarCitasActivity.this);
+        this.listaCita.setAdapter(citaAdapter);
     }
 }

@@ -1,5 +1,8 @@
 package com.siomarajimenezl.lernen;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -100,11 +104,34 @@ public class FinCitaActivity extends BaseActivity {
 
         autRef.child("Contador").setValue(Integer.parseInt(numCita) + 1);
 
+        //setAlarm(getApplicationContext());
+
         Toast.makeText(getApplicationContext(),
                 "Cita creada",
                 Toast.LENGTH_LONG).show();
 
         startActivity(i);
+    }
+
+    public void setAlarm(View view) {
+
+        // Define a time value of 5 seconds
+        Long alertTime = new GregorianCalendar().getTimeInMillis()+5*1000;
+
+        // Define our intention of executing AlertReceiver
+        Intent alertIntent = new Intent(this, AlertReceiver.class);
+
+        // Allows you to schedule for your application to do something at a later date
+        // even if it is in he background or isn't active
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        // set() schedules an alarm to trigger
+        // Trigger for alertIntent to fire in 5 seconds
+        // FLAG_UPDATE_CURRENT : Update the Intent if active
+        alarmManager.set(AlarmManager.RTC_WAKEUP, alertTime,
+                PendingIntent.getBroadcast(this, 1, alertIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT));
+
     }
 
 }

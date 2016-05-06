@@ -97,6 +97,12 @@ public class PerfilUserActivity extends BaseActivity {
             public void onSuccess() {
                 Log.d("Sucess", "Logout");
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                try{
+                    ref.child(authData.getUid()).removeValue();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 startActivity(intent);
                 progress.dismiss();
