@@ -122,7 +122,7 @@ public class PerfilUserActivity extends BaseActivity {
         ref.child(authData.getUid()).removeValue();
         Log.d("Remove", email_user);
         Log.d("PASSWORD DELETE", password_user);
-        //TODO: ELIMINAR EL ERROR DE QUE FALLO LA APLICACION
+
 
 
 

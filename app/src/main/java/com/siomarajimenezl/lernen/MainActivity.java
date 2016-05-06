@@ -13,8 +13,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//TODO: CAMBIAR TODAS LAS IMAGES
-
 public class MainActivity extends BaseActivity implements JSONRequest.JSONCallback,AdapterView.OnItemClickListener {
 
     private ListView listaMain;

@@ -23,8 +23,6 @@ import java.util.Random;
 
 public class ChatActivity extends ListActivity {
 
-    // TODO: change this to your own Firebase URL
-    //private static final String FIREBASE_URL = "https://android-chat.firebaseio-demo.com";
     private static final String FIREBASE_URL = "https://vivid-torch-7570.firebaseio.com/";
 
     private String mUsername;
@@ -122,7 +120,7 @@ public class ChatActivity extends ListActivity {
         if (mUsername == null) {
             Random r = new Random();
             // Assign a random user name if we don't have one saved.
-            //TODO: CAMBIAR POR EL NOMBRE DEL QUE HACE LOGIN
+
             mUsername = nombre;
             prefs.edit().putString("username", mUsername).commit();
         }

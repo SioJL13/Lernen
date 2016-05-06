@@ -13,8 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-//TODO: CARGAR SU IMAGEN CON PICASSO
-//TODO: ARREGLAR EL DISENO
+
 public class PerfilTutoresActivity extends BaseActivity  {
 
     TextView nombre, materia, escolaridad, descripcion;
